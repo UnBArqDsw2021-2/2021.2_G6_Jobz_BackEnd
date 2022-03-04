@@ -2,14 +2,19 @@ version: "3.9"
 services:
   db:
     image: postgres
+    container_name: db
     volumes:
       - ./data/db:/var/lib/postgresql/data
     env_file:
       - postgres.env
+    ports:
+      - "5432:5432"
     networks:
-      - JobzNetwork
+      JobzNetwork:
+        ipv4_address: 172.20.0.2
   backend:
     build: .
+    container_name: backend
     command: python manage.py runserver 0.0.0.0:8000
     working_dir: /code/jobz
     volumes:
@@ -26,3 +31,7 @@ networks:
   JobzNetwork:
     # Use a custom driver
     driver: bridge
+    ipam:
+     config:
+       - subnet: 172.20.0.1/16
+         gateway: 172.20.0.1
