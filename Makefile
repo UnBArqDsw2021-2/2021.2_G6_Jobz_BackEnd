@@ -1,5 +1,5 @@
 build:
-	docker build -t jobz .
+	docker build -t jobzback .
 run:
 	docker-compose up -d
 
