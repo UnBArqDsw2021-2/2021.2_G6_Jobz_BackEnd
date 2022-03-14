@@ -21,5 +21,32 @@
 
 ## Requisitos
 
-''' Docker => 
-''' docker compose 
+Docker => 20.10.12
+
+docker compose => 1.29.2
+
+## Como rodar
+### Primeira execução:
+
+    make build
+
+### Subir o ambiente:
+    make run
+
+### Parar o ambiente:
+    make stop
+
+### Comandos extras:
+Entrar no container do banco de dados
+    
+    make db
+
+Entrar no container do backend
+    
+    make backend
+
+Fazer migração de modelo
+     
+     make migrate
+
+
