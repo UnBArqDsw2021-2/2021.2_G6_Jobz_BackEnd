@@ -4,7 +4,7 @@ from rest_framework import serializers
 class UserSerializers(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = User
-		fields = ['cpf' , 'name' , 'phone', 'email']
+		fields = ['cpf' , 'name' , 'phone', 'email', 'password']
 
 class ProviderSerializers(serializers.HyperlinkedModelSerializer):
 	class Meta:
