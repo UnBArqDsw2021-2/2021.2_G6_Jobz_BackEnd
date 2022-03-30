@@ -28,6 +28,8 @@ class Person(AbstractUser):
     cpf = models.BigIntegerField(primary_key=True)
     phone = models.BigIntegerField()
     email = models.EmailField(verbose_name="email", max_length=150, unique=True)
+    username = models.CharField(max_length=150, unique=False, verbose_name='username', null=True)
+    password = models.CharField(max_length=128, verbose_name='password', null=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
