@@ -55,7 +55,7 @@ docker compose => 1.29.2
 ```
 Que deve retornar uma mensagem parecida com:
 ```
-State   Recv-Q  Send-Q     Local Address:Port          Peer Address:Port       Process        
+State   Recv-Q  Send-Q     Local Address:Port          Peer Address:Port       Process
 LISTEN  0       244            127.0.0.1:5432               0.0.0.0:*           users:(("postgres",pid=1006,fd=3))
 ```
 em seguida você deve matar o processo com:
@@ -79,7 +79,7 @@ sudo kill -9 1006(o pid que é retornado na mensagem acima)
 ```
     make db
 ```
-- Acesso entrar no posgre(dentro do container de bancos):
+- Acesso ao posgres (você deve estar dentro do container do banco):
 ```
     psql -U postgres -W
 ```
@@ -123,7 +123,7 @@ sudo kill -9 1006(o pid que é retornado na mensagem acima)
         "occupation": (int) <-- ID da occupation<br>
         "password": (string)
 
-- Service
+- Service(precisa estar logado)
 
     localhost:8000/service/
 
@@ -135,7 +135,7 @@ sudo kill -9 1006(o pid que é retornado na mensagem acima)
         "provicer": cpf(do provider)<br>
         "occupation": idOccupation <-- Precisa cadastrar uma occupation
 
-- Occupation
+- Occupation(precisa estar logado)
 
     Não deveria ser acessivel pelo site normal<br>
     Não pode ter categorias com mesmo nome<br>
@@ -144,3 +144,12 @@ sudo kill -9 1006(o pid que é retornado na mensagem acima)
     - Atributos
 
         "occupation": enum(Encanador, Diarista, Pedreiro,Tecnico)
+
+- Login (funciona no back mas a gente ainda não tem certeza de como faz com o front)
+
+    localhost:8000/api-auth/login/
+
+    - Atributos
+
+        "email": (string)
+        "password": (string)
