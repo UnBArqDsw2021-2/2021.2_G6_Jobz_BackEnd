@@ -1,7 +1,7 @@
 from .models import User, Provider
 from rest_framework import serializers
 
-class UserSerializers(serializers.HyperlinkedModelSerializer):
+class UserSerializers(serializers.ModelSerializer):
 	password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 	class Meta:
 		model = User
@@ -19,7 +19,7 @@ class UserSerializers(serializers.HyperlinkedModelSerializer):
 		user.save()
 		return user
 
-class ProviderSerializers(serializers.HyperlinkedModelSerializer):
+class ProviderSerializers(serializers.ModelSerializer):
 	password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 
 	class Meta:
