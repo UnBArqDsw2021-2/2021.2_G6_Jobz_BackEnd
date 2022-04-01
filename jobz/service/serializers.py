@@ -4,4 +4,4 @@ from rest_framework import serializers
 class ServiceSerializers(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Services
-		fields = ['datePurchase' , 'dateSevice' , 'serviceDesription']
+		fields = ['dateService', 'serviceDescription', 'user', 'provider', 'occupation']

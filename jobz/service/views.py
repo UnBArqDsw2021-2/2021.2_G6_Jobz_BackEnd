@@ -6,4 +6,4 @@ from .models import Services
 class ServiceViewSet(viewsets.ModelViewSet):
     queryset = Services.objects.all().order_by('datePurchase')
     serializer_class = ServiceSerializers
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]

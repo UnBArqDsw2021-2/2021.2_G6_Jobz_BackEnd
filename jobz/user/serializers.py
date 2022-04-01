@@ -1,4 +1,4 @@
-from .models import User, Provider 
+from .models import User, Provider
 from rest_framework import serializers
 
 class UserSerializers(serializers.HyperlinkedModelSerializer):
@@ -6,7 +6,7 @@ class UserSerializers(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = User
 		fields = ['cpf' , 'name' , 'phone', 'email', 'password']
-		
+
 	def save(self):
 		user = User(
 			cpf = self.validated_data['cpf'],
