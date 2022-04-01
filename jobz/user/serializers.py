@@ -24,7 +24,7 @@ class ProviderSerializers(serializers.ModelSerializer):
 
 	class Meta:
 		model = Provider
-		fields = ['cpf' , 'name' , 'phone', 'email', 'password']
+		fields = ['cpf' , 'name' , 'phone', 'email', 'password', 'occupation']
 
 	def save(self):
 		provider = Provider(
@@ -32,6 +32,7 @@ class ProviderSerializers(serializers.ModelSerializer):
 			name = self.validated_data['name'],
 			phone = self.validated_data['phone'],
 			email = self.validated_data['email'],
+			occupation = self.validated_data['occupation'],
     	)
 		password = self.validated_data['password']
 		provider.set_password(password)

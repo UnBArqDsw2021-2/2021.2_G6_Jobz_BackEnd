@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from search.models import Occupation
 
 # Sobreescrever criação de user
 class PersonManager(BaseUserManager):
@@ -45,4 +46,4 @@ class User(Person):
 class Provider(Person):
     # idOcupation = models.ForeignKey()
     # cpf = models.ForeignKey(Person, on_delete=models.CASCADE)
-    pass
+    occupation = models.ForeignKey(Occupation, null=True, on_delete=models.RESTRICT)

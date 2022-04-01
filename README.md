@@ -38,6 +38,12 @@ docker compose => 1.29.2
 ```
     make run
 ```
+
+- Por fim é necessário executar as migrations com o comando:
+```
+    make migrate
+```
+
 ### Possiveis erros
 ```
     tcp4 0.0.0.0:5432: bind: address already in use
