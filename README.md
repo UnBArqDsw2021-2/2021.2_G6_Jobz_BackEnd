@@ -123,6 +123,17 @@ sudo kill -9 1006(o pid que é retornado na mensagem acima)
         "occupation": (int) <-- ID da occupation<br>
         "password": (string)
 
+- Schedule(precisa estar logado)
+
+    localhost:8000/schedule/
+
+    - Atributos
+
+        "dayOfWeek": ("seg", "ter", "qua", "qui", "sex", "sab", "dom")<br>
+        "entryTime": ("HH:MM:SS")<br>
+        "endOfWork": ("HH:MM:SS")<br>
+        "provider": cpf(do provider)
+
 - Service(precisa estar logado)
 
     localhost:8000/service/
@@ -132,7 +143,7 @@ sudo kill -9 1006(o pid que é retornado na mensagem acima)
         "dateService": YYYY-MM-DD  <-- Tudo integer<br>
         "serviceDescription": (string)<br>
         "user": cpf(do usuário)<br>
-        "provicer": cpf(do provider)<br>
+        "provider": cpf(do provider)<br>
         "occupation": idOccupation <-- Precisa cadastrar uma occupation
 
 - Occupation(precisa estar logado)
