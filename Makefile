@@ -1,5 +1,8 @@
 build:
 	docker build -t jobzback .
+	docker exec -it backend python3 manage.py makemigrations
+	docker exec -it backend python3 manage.py migrate
+
 run:
 	docker container rm -f db
 	docker container rm -f backend

@@ -28,25 +28,113 @@ docker compose => 1.29.2
 ## Como rodar
 ### Primeira execução:
 
+- Primeiro você deve criar as imagens necessárias para rodar o ambiente, para isso você deve usar o comando:
+
+```
     make build
+```
 
-### Subir o ambiente:
+- Em seguida é necessário subir os containers do ambiente com o comando:
+```
     make run
+```
+### Possiveis erros
+```
+    tcp4 0.0.0.0:5432: bind: address already in use
+```
 
-### Parar o ambiente:
+- Solução
+```
+    sudo ss -lptn 'sport = :5432'
+```
+Que deve retornar uma mensagem parecida com:
+```
+State   Recv-Q  Send-Q     Local Address:Port          Peer Address:Port       Process        
+LISTEN  0       244            127.0.0.1:5432               0.0.0.0:*           users:(("postgres",pid=1006,fd=3))
+```
+em seguida você deve matar o processo com:
+```
+sudo kill -9 1006(o pid que é retornado na mensagem acima)
+```
+
+### Comandos individuais:
+
+- Subir containers de ambiente:
+```
+    make run
+```
+
+- Parar containers de ambiente:
+```
     make stop
+```
 
-### Comandos extras:
-Entrar no container do banco de dados
-    
+- Entrar no container do banco de dados
+```
     make db
+```
+- Acesso entrar no posgre(dentro do container de bancos):
+```
+    psql -U postgres -W
+```
+    Senha do banco: postgres
 
-Entrar no container do backend
-    
+
+- Entrar no container do backend:
+```
     make backend
+```
 
-Fazer migração de modelo
-     
+- Fazer migração de alterações em tabelas do django para que elas reflitam nas tabelas do banco de dados:
+```
      make migrate
+```
 
+### Endpoints
 
+- User
+
+    localhost:8000/user/
+
+    - Atributos
+
+        "cpf": (integer)<br>
+        "name": (string)<br>
+        "phone": (integer)<br>
+        "email": (string)<br>
+        "password": (string)
+
+- Provider
+
+    localhost:8000/provider/
+
+    - Atributos
+
+        "cpf": (integer)<br>
+        "name": (string)<br>
+        "phone": (integer)<br>
+        "email": (string)<br>
+        "occupation": (int) <-- ID da occupation<br>
+        "password": (string)
+
+- Service
+
+    localhost:8000/service/
+
+    - Atributos
+
+        "dateService": YYYY-MM-DD  <-- Tudo integer<br>
+        "serviceDescription": (string)<br>
+        "user": cpf(do usuário)<br>
+        "provicer": cpf(do provider)<br>
+        "occupation": idOccupation <-- Precisa cadastrar uma occupation
+
+- Occupation
+
+    Não deveria ser acessivel pelo site normal<br>
+    Não pode ter categorias com mesmo nome<br>
+    Só tem algumas possibilidades (as que tem no modelo do FrontEnd)
+
+    - Atributos
+
+        "occupation": enum(Encanador, Diarista, Pedreiro,Tecnico)
