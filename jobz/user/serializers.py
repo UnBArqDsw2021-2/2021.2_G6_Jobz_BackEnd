@@ -1,12 +1,12 @@
-from .models import User, Provider 
+from .models import User, Provider
 from rest_framework import serializers
 
-class UserSerializers(serializers.HyperlinkedModelSerializer):
+class UserSerializers(serializers.ModelSerializer):
 	password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 	class Meta:
 		model = User
 		fields = ['cpf' , 'name' , 'phone', 'email', 'password']
-		
+
 	def save(self):
 		user = User(
 			cpf = self.validated_data['cpf'],
@@ -19,12 +19,12 @@ class UserSerializers(serializers.HyperlinkedModelSerializer):
 		user.save()
 		return user
 
-class ProviderSerializers(serializers.HyperlinkedModelSerializer):
+class ProviderSerializers(serializers.ModelSerializer):
 	password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 
 	class Meta:
 		model = Provider
-		fields = ['cpf' , 'name' , 'phone', 'email', 'password']
+		fields = ['cpf' , 'name' , 'phone', 'email', 'password', 'occupation']
 
 	def save(self):
 		provider = Provider(
@@ -32,6 +32,7 @@ class ProviderSerializers(serializers.HyperlinkedModelSerializer):
 			name = self.validated_data['name'],
 			phone = self.validated_data['phone'],
 			email = self.validated_data['email'],
+			occupation = self.validated_data['occupation'],
     	)
 		password = self.validated_data['password']
 		provider.set_password(password)

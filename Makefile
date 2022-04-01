@@ -1,5 +1,6 @@
 build:
 	docker build -t jobzback .
+
 run:
 	docker container rm -f db
 	docker container rm -f backend
