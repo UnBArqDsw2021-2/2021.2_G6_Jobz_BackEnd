@@ -145,11 +145,13 @@ sudo kill -9 1006(o pid que é retornado na mensagem acima)
 
         "occupation": enum(Encanador, Diarista, Pedreiro,Tecnico)
 
-- Login (funciona no back mas a gente ainda não tem certeza de como faz com o front)
+- Login
 
-    localhost:8000/api-auth/login/
+    localhost:8000/api/token/obtain/
 
     - Atributos
 
         "email": (string)
         "password": (string)
+
+    **Retorna dois tokens que precisam ser passados como authorization header(JWT ou Bearer) para as paginas que precisam de autenticação.**
