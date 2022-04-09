@@ -1,7 +1,7 @@
 from django.urls import include, path, re_path
 from rest_framework import routers
 from service.views import ServiceViewSet
-from user.views import UserViewSet, ProviderViewSet, PurchaseList
+from user.views import UserViewSet, ProviderViewSet, ProviderList
 from search.views import OccupationViewSet
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -19,7 +19,7 @@ router.register(r'occupation', OccupationViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('api/', include('authentication.urls')),
-    path('provider/<str:name>/<int:occupation>', PurchaseList.as_view()),
+    path('provider/<str:name>/<int:occupation>', ProviderList.as_view()),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
