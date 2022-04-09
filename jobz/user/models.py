@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.core.validators import RegexValidator
 from search.models import Occupation
+from django.core.validators import MaxValueValidator, MinValueValidator
+
+from .utils import validate_cpf
 
 # Sobreescrever criação de user
 class PersonManager(BaseUserManager):
@@ -24,12 +28,39 @@ class PersonManager(BaseUserManager):
 
 # Create your models here.
 class Person(AbstractUser):
-    name = models.CharField(max_length=500)
-    cpf = models.BigIntegerField(primary_key=True)
-    phone = models.BigIntegerField()
-    email = models.EmailField(verbose_name="email", max_length=150, unique=True)
+    name = models.CharField(
+        validators=[RegexValidator(regex='^[a-zA-Z]{3}[a-zA-Z ]*$',
+            message='Nome deve conter pelo menos 3 caracteres, apenas letras.',
+            code='erro')],
+        max_length=500,
+        )
+    cpf = models.CharField(
+        max_length=11,
+        primary_key=True,
+        validators=[validate_cpf],
+    )
+    phone = models.BigIntegerField(
+        validators=[
+            MaxValueValidator(99999999999),
+            MinValueValidator(11000000000),
+        ],
+    )
+    email = models.EmailField(
+        validators=[RegexValidator(regex='^[a-zA-Z0-9]{6,30}\@[a-z]{2,7}\.[a-z]{2,4}(\.[a-z]{2,4})?$',
+            message='Email invalido.',
+            code='erro')],
+        verbose_name="email",
+        max_length=150,
+        unique=True)
     username = models.CharField(max_length=150, unique=False, verbose_name='username', null=True)
-    password = models.CharField(max_length=128, verbose_name='password', null=False)
+    password = models.CharField(
+        max_length=128,
+        validators=[RegexValidator(regex='^[a-zA-Z0-9+\-*^´+_)(&!@#]{8,128}$',
+            message='Senha invalida. A senha deve conter mais de 8 digitos.',
+            code='erro')],
+        verbose_name='password',
+        null=False,
+        )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
