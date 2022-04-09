@@ -1,4 +1,6 @@
 from rest_framework import viewsets
+import django_filters
+from rest_framework import generics
 from rest_framework import permissions
 from rest_framework.response import Response
 from .serializers import UserSerializers, ProviderSerializers
@@ -12,13 +14,28 @@ class UserViewSet(viewsets.ModelViewSet):
 class ProviderViewSet(viewsets.ModelViewSet):
     queryset = Provider.objects.all().order_by('name')
     serializer_class = ProviderSerializers
+    filterset_fields = ['name']
     permission_classes = [permissions.AllowAny]
 
-    def retrieve(self, request, *args, **kwargs):
-        params = kwargs
-        print(params['pk'])
+class PurchaseList(generics.ListAPIView):
+    serializer_class = ProviderSerializers
 
-        providers = Provider.objects.filter(name__contains=params['pk'])
-        serializer = ProviderSerializers(providers, many=True)
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases for
+        the user as determined by the username portion of the URL.
+        """
+        name = self.kwargs['name']
+        occupation = self.kwargs['occupation']
 
-        return Response(serializer.data)
+        if name == '-':
+            if occupation == 0:
+                return Provider.objects.all()
+            else:
+                return Provider.objects.filter(occupation=occupation)
+        else:
+            if occupation == 0:
+                return Provider.objects.filter(name__contains=name)
+            else:
+                return Provider.objects.filter(name__contains=name, occupation=occupation)
+    
