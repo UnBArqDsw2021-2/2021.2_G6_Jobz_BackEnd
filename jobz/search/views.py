@@ -6,4 +6,4 @@ from .models import Occupation
 class OccupationViewSet(viewsets.ModelViewSet):
     queryset = Occupation.objects.all().order_by('occupation')
     serializer_class = OccupationSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]

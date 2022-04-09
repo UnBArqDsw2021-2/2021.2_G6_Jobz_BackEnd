@@ -2,8 +2,11 @@ from tkinter import CASCADE
 from django.db import models
 from user.models import Provider
 
+from .utils import validateTime
+
+
 class Schedule(models.Model):
-    dayOfWeek = models.CharField(max_length=25, unique=True, default='seg',
+    dayOfWeek = models.CharField(max_length=25, default='seg',
         choices=(
             ('seg', 'Segunda-Feira'),
             ('ter', 'Terça-Feira'),
