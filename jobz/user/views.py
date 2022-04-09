@@ -1,5 +1,4 @@
 from rest_framework import viewsets
-import django_filters
 from rest_framework import generics
 from rest_framework import permissions
 from rest_framework.response import Response
@@ -17,14 +16,10 @@ class ProviderViewSet(viewsets.ModelViewSet):
     filterset_fields = ['name']
     permission_classes = [permissions.AllowAny]
 
-class PurchaseList(generics.ListAPIView):
+class ProviderList(generics.ListAPIView):
     serializer_class = ProviderSerializers
 
     def get_queryset(self):
-        """
-        This view should return a list of all the purchases for
-        the user as determined by the username portion of the URL.
-        """
         name = self.kwargs['name']
         occupation = self.kwargs['occupation']
 
