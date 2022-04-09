@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'schedule',
     'service',
+    'django_filters',
     'search',
     'user',
 ]
