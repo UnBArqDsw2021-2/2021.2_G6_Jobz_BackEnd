@@ -6,4 +6,4 @@ from .models import Schedule
 class ScheduleViewSet(viewsets.ModelViewSet):
     queryset = Schedule.objects.all().order_by('dayOfWeek')
     serializer_class = ScheduleSerializers
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]

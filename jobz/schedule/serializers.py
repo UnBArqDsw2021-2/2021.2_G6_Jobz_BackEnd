@@ -7,7 +7,17 @@ class ScheduleSerializers(serializers.ModelSerializer):
 		fields = '__all__'
 
 
-	def validate(self, data):
-		if data['entryTime'] < data['endOfWork']:
-			raise serializers.ValidationError('123123123')
-		return data
+	def save(self):
+		start = self.validated_data['entryTime']
+		end = self.validated_data['endOfWork']
+		if end < start:
+			raise serializers.ValidationError('O Horário de saida não pode ser anterior ao horário de entrada.')
+		else:
+			schedule = Schedule (
+				entryTime = start,
+				endOfWork = end,
+				dayOfWeek = self.validated_data['dayOfWeek'],
+				provider = self.validated_data['provider'],
+			)
+			schedule.save()
+			return schedule

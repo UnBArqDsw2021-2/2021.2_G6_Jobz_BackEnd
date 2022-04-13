@@ -29,11 +29,13 @@ class PersonManager(BaseUserManager):
 # Create your models here.
 class Person(AbstractUser):
     name = models.CharField(
-        validators=[RegexValidator(regex='^[a-zA-Z]{3}[a-zA-Z ]*$',
+        validators=[
+            RegexValidator(regex='^[a-zA-Z]{3}[a-zA-Z ]*$',
             message='Nome deve conter pelo menos 3 caracteres, apenas letras.',
-            code='erro')],
+            code='erro')
+        ],
         max_length=500,
-        )
+    )
     cpf = models.CharField(
         max_length=11,
         primary_key=True,
@@ -46,21 +48,26 @@ class Person(AbstractUser):
         ],
     )
     email = models.EmailField(
-        validators=[RegexValidator(regex='^[a-zA-Z0-9]{6,30}\@[a-z]{2,7}\.[a-z]{2,4}(\.[a-z]{2,4})?$',
+        validators=[
+            RegexValidator(regex='^[a-zA-Z0-9]{6,30}\@[a-z]{2,7}\.[a-z]{2,4}(\.[a-z]{2,4})?$',
             message='Email invalido.',
-            code='erro')],
+            code='erro')
+        ],
         verbose_name="email",
         max_length=150,
-        unique=True)
-    username = models.CharField(max_length=150, unique=False, verbose_name='username', null=True)
+        unique=True
+    )
+    username = models.CharField(
+        max_length=150,
+        unique=False,
+        verbose_name='username',
+        null=True
+    )
     password = models.CharField(
         max_length=128,
-        validators=[RegexValidator(regex='^[a-zA-Z0-9+\-*^´+_)(&!@#]{8,128}$',
-            message='Senha invalida. A senha deve conter mais de 8 digitos.',
-            code='erro')],
         verbose_name='password',
         null=False,
-        )
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -71,10 +78,7 @@ class Person(AbstractUser):
         return self.name
 
 class User(Person):
-    # cpf = models.ForeignKey(Person, on_delete=models.CASCADE)
     pass
 
 class Provider(Person):
-    # idOcupation = models.ForeignKey()
-    # cpf = models.ForeignKey(Person, on_delete=models.CASCADE)
     occupation = models.ForeignKey(Occupation, null=True, on_delete=models.RESTRICT)
