@@ -143,4 +143,4 @@ data/
 
 .vscode/
 
-*./migrations/*
+migrations/
