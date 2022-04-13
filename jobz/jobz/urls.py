@@ -7,12 +7,14 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from schedule.views import ScheduleViewSet
 
 router = routers.DefaultRouter()
 router.register(r'service', ServiceViewSet)
 router.register(r'user', UserViewSet)
 router.register(r'provider', ProviderViewSet)
 router.register(r'occupation', OccupationViewSet)
+router.register(r'schedule', ScheduleViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
