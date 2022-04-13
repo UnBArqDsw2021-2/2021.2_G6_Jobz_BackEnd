@@ -1,5 +1,7 @@
-from .models import User, Provider
+import re
 from rest_framework import serializers
+
+from .models import User, Provider
 
 class UserSerializers(serializers.ModelSerializer):
 	password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
@@ -10,14 +12,18 @@ class UserSerializers(serializers.ModelSerializer):
 	def save(self):
 		user = User(
 			cpf = self.validated_data['cpf'],
-            name = self.validated_data['name'],
-            phone = self.validated_data['phone'],
-            email = self.validated_data['email'],
-        )
+			name = self.validated_data['name'],
+			phone = self.validated_data['phone'],
+			email = self.validated_data['email'],
+		)
 		password = self.validated_data['password']
-		user.set_password(password)
-		user.save()
-		return user
+		if re.match('^[a-zA-Z0-9/*-+.,!-@#$%&*()_=]{8,50}$', password) == None:
+			raise serializers.ValidationError('A senha deve conter no minimo 8 caracteres.')
+		else:
+			user.set_password(password)
+			user.save()
+			return user
+
 
 class ProviderSerializers(serializers.ModelSerializer):
 	password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
@@ -27,14 +33,17 @@ class ProviderSerializers(serializers.ModelSerializer):
 		fields = ['cpf' , 'name' , 'phone', 'email', 'password', 'occupation']
 
 	def save(self):
-		provider = Provider(
+		user = User(
 			cpf = self.validated_data['cpf'],
 			name = self.validated_data['name'],
 			phone = self.validated_data['phone'],
 			email = self.validated_data['email'],
-			occupation = self.validated_data['occupation'],
-    	)
+		)
 		password = self.validated_data['password']
-		provider.set_password(password)
-		provider.save()
-		return provider
+		if re.match('^[a-zA-Z0-9/*-+.,!-@#$%&*()_=]{8,50}$', password) == None:
+			raise serializers.ValidationError('A senha deve conter no minimo 8 caracteres.')
+		else:
+			user.set_password(password)
+			user.save()
+			return user
+
