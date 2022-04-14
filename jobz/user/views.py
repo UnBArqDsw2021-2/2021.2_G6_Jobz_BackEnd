@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework import generics
 from rest_framework import permissions
 from rest_framework.response import Response
 from .serializers import UserSerializers, ProviderSerializers
@@ -12,13 +13,24 @@ class UserViewSet(viewsets.ModelViewSet):
 class ProviderViewSet(viewsets.ModelViewSet):
     queryset = Provider.objects.all().order_by('name')
     serializer_class = ProviderSerializers
+    filterset_fields = ['name']
     permission_classes = [permissions.AllowAny]
 
-    def retrieve(self, request, *args, **kwargs):
-        params = kwargs
-        print(params['pk'])
+class ProviderList(generics.ListAPIView):
+    serializer_class = ProviderSerializers
 
-        providers = Provider.objects.filter(name__contains=params['pk'])
-        serializer = ProviderSerializers(providers, many=True)
+    def get_queryset(self):
+        name = self.kwargs['name']
+        occupation = self.kwargs['occupation']
 
-        return Response(serializer.data)
+        if name == '-':
+            if occupation == 0:
+                return Provider.objects.all()
+            else:
+                return Provider.objects.filter(occupation=occupation)
+        else:
+            if occupation == 0:
+                return Provider.objects.filter(name__contains=name)
+            else:
+                return Provider.objects.filter(name__contains=name, occupation=occupation)
+    
