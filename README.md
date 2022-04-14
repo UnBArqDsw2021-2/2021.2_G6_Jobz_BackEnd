@@ -186,3 +186,4 @@ sudo fuser -k 5432/tcp
     "presentationPhoto": (image)
     "description": (string)
     "provider": (integer) <- CPF do provider
+
