@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'service',
     'search',
     'user',
+    'provider_presentation',
 ]
 
 MIDDLEWARE = [
