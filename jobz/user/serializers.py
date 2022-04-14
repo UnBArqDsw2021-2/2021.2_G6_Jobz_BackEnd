@@ -9,7 +9,7 @@ class UserSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["cpf", "name", "phone", "email", "password"]
+        fields = ["cpf", "name", "phone", "email", "password", "photo"]
 
     def save(self):
         user = User(
@@ -17,6 +17,7 @@ class UserSerializers(serializers.ModelSerializer):
             name=self.validated_data["name"],
             phone=self.validated_data["phone"],
             email=self.validated_data["email"],
+            photo=self.validated_data["photo"],
         )
         password = self.validated_data["password"]
         if re.match("^[a-zA-Z0-9/*-+.,!-@#$%&*()_=]{8,50}$", password) == None:
@@ -34,7 +35,7 @@ class ProviderSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Provider
-        fields = ["cpf", "name", "phone", "email", "password", "occupation"]
+        fields = ["cpf", "name", "phone", "email", "password", "occupation", "photo"]
 
     def save(self):
         provider = Provider(
@@ -43,6 +44,7 @@ class ProviderSerializers(serializers.ModelSerializer):
             phone=self.validated_data["phone"],
             email=self.validated_data["email"],
             occupation=self.validated_data["occupation"],
+            photo=self.validated_data["photo"],
         )
         password = self.validated_data["password"]
         if re.match("^[a-zA-Z0-9/*-+.,!-@#$%&*()_=]{8,50}$", password) == None:
