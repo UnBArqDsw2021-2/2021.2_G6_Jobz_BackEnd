@@ -183,7 +183,6 @@ sudo fuser -k 5432/tcp
 
     - Atributos
 
-    "presentationPhoto": (image)
-    "description": (string)
-    "provider": (integer) <- CPF do provider
-
+        "presentationPhoto": (image)<br>
+        "description": (string)<br>
+        "provider": (integer) <- CPF do provider<br>
