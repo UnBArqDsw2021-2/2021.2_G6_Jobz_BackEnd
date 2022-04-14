@@ -176,3 +176,22 @@ sudo fuser -k 5432/tcp
 
     - **Provider** = Uma string com parte do nome do prestador de serviço cadastrado, deve serguir o mesmo padrão do cadastro (deve ser case sensitive, etc), ou um "-" caso não deseje fazer pesquisa especificando nome do prestador.
     - **Occupation** = Um int, que corresponde ao ID da categoria que irá fazer parte do filtro, deve passar o numero "0" quando não quiser especificar uma ocupação.
+    
+
+
+- Perfil
+    localhost:8000/provider/**CPF**/
+
+    - **CPF** = CPF cadastrado do usuário.
+
+    - Atributos:
+        "cpf": (integer)<br>
+        "name": (string)<br>
+        "phone": (integer)<br>
+        "email": (string)<br>
+        "occupation": (int) <-- ID da occupation<br>
+        "password": (string)<br>
+        "photo": imagem ou null
+
+
+    **Todos os campos podem ser alterados pelo mesmo body que está no formulário de cadastro, também tem as mesmas restrições, inclusive a parte de inserir a senha, que pode ser a mesma ou uma nova senha(vamos mudar isso em breve).**
