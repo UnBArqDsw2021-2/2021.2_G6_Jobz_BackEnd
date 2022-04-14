@@ -169,3 +169,10 @@ sudo fuser -k 5432/tcp
         "password": (string)
 
     **Retorna dois tokens que precisam ser passados como authorization header(JWT ou Bearer) para as paginas que precisam de autenticação.**
+
+- Pesquisa
+
+    localhost:8000/provider/**Provider**/**Occupation**
+
+    - **Provider** = Uma string com parte do nome do prestador de serviço cadastrado, deve serguir o mesmo padrão do cadastro (deve ser case sensitive, etc), ou um "-" caso não deseje fazer pesquisa especificando nome do prestador.
+    - **Occupation** = Um int, que corresponde ao ID da categoria que irá fazer parte do filtro, deve passar o numero "0" quando não quiser especificar uma ocupação.
