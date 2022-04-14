@@ -162,6 +162,6 @@ sudo kill -9 1006(o pid que é retornado na mensagem acima)
 
     - Atributos
 
-    "presentationPhoto": (image)
-    "description": (string)
-    "provider": (integer) <- CPF do provider
+    "presentationPhoto": (image)<br>
+    "description": (string)<br>
+    "provider": (integer) <- CPF do provider<br>
