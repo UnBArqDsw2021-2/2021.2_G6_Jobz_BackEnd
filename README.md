@@ -176,3 +176,13 @@ sudo fuser -k 5432/tcp
 
     - **Provider** = Uma string com parte do nome do prestador de serviço cadastrado, deve serguir o mesmo padrão do cadastro (deve ser case sensitive, etc), ou um "-" caso não deseje fazer pesquisa especificando nome do prestador.
     - **Occupation** = Um int, que corresponde ao ID da categoria que irá fazer parte do filtro, deve passar o numero "0" quando não quiser especificar uma ocupação.
+
+- Perfil de Apresentação do Prestador para o Cliente (precisa estar logado)
+
+    localhost:8000/providerPresentation
+
+    - Atributos
+
+    "presentationPhoto": (image)
+    "description": (string)
+    "provider": (integer) <- CPF do provider
