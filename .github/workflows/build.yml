@@ -24,8 +24,5 @@ jobs:
       with:
         context: ./
         file: ./Dockerfile
-        builder: ${{ steps.buildx.outputs.name }}
         push: true
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/jobzbackend:latest
-        cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/jobzbackend:buildcache
-        cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/jobzbackend:buildcache,mode=max
