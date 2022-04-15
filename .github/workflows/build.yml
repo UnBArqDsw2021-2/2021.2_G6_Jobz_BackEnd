@@ -18,11 +18,10 @@ jobs:
       run: docker build . --file Dockerfile -t backend
     - name: Tag
       run: docker tag backend antonioaldisio/backend
-    - name: Docker configure
-      run: docker login
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
       with:
-        username: ${{ DOCKER_USERNAME }}
-        password: ${{ DOCKER_PASSOWRD_ANTONIO }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSOWRD_ANTONIO }}
     - name: pull
       run: docker pull antonioaldisio/backend
-
