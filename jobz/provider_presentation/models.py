@@ -2,7 +2,7 @@ from django.db import models
 from user.models import Provider
 
 def nameFile(instance, filename):
-    return "/".join(["images", str(instance.provider), filename])
+    return "/".join(["images/providerPresentation", str(instance.provider), filename])
 
 class ProviderPresentation(models.Model):
     presentationPhoto = models.ImageField(upload_to=nameFile, blank=True, null=True)
