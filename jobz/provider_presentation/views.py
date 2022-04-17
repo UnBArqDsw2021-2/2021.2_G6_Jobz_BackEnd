@@ -6,4 +6,4 @@ from .models import ProviderPresentation
 class ProviderPresentationViewSet(viewsets.ModelViewSet):
     queryset = ProviderPresentation.objects.all().order_by('provider')
     serializer_class = ProviderPresentationSerializers
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
