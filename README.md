@@ -62,6 +62,9 @@ em seguida você deve matar o processo com:
 ```
 sudo kill -9 1006(o pid que é retornado na mensagem acima)
 ```
+```
+sudo fuser -k 5432/tcp
+```
 
 ### Comandos individuais:
 
@@ -123,6 +126,17 @@ sudo kill -9 1006(o pid que é retornado na mensagem acima)
         "occupation": (int) <-- ID da occupation<br>
         "password": (string)
 
+- Schedule(precisa estar logado)
+
+    localhost:8000/schedule/
+
+    - Atributos
+
+        "dayOfWeek": ("seg", "ter", "qua", "qui", "sex", "sab", "dom")<br>
+        "entryTime": ("HH:MM:SS")<br>
+        "endOfWork": ("HH:MM:SS")<br>
+        "provider": cpf(do provider)
+
 - Service(precisa estar logado)
 
     localhost:8000/service/
@@ -132,7 +146,7 @@ sudo kill -9 1006(o pid que é retornado na mensagem acima)
         "dateService": YYYY-MM-DD  <-- Tudo integer<br>
         "serviceDescription": (string)<br>
         "user": cpf(do usuário)<br>
-        "provicer": cpf(do provider)<br>
+        "provider": cpf(do provider)<br>
         "occupation": idOccupation <-- Precisa cadastrar uma occupation
 
 - Occupation(precisa estar logado)
@@ -165,3 +179,11 @@ sudo kill -9 1006(o pid que é retornado na mensagem acima)
         "presentationPhoto": (image)<br>
         "description": (string)<br>
         "provider": (integer) <- CPF do provider<br>
+
+- Pesquisa
+
+    localhost:8000/provider/**Provider**/**Occupation**
+
+    - **Provider** = Uma string com parte do nome do prestador de serviço cadastrado, deve serguir o mesmo padrão do cadastro (deve ser case sensitive, etc), ou um "-" caso não deseje fazer pesquisa especificando nome do prestador.
+    - **Occupation** = Um int, que corresponde ao ID da categoria que irá fazer parte do filtro, deve passar o numero "0" quando não quiser especificar uma ocupação.
+

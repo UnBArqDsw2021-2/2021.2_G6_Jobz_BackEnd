@@ -2,7 +2,7 @@ from django.conf import settings
 from django.urls import include, path
 from rest_framework import routers
 from service.views import ServiceViewSet
-from user.views import UserViewSet, ProviderViewSet
+from user.views import UserViewSet, ProviderViewSet, ProviderList
 from search.views import OccupationViewSet
 from provider_presentation.views import ProviderPresentationViewSet
 from rest_framework_simplejwt.views import (
