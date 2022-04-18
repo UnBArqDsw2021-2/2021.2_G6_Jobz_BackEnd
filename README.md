@@ -170,6 +170,16 @@ sudo fuser -k 5432/tcp
 
     **Retorna dois tokens que precisam ser passados como authorization header(JWT ou Bearer) para as paginas que precisam de autenticação.**
 
+- Perfil de Apresentação do Prestador para o Cliente (precisa estar logado)
+
+    localhost:8000/providerPresentation
+
+    - Atributos
+
+        "presentationPhoto": (image)<br>
+        "description": (string)<br>
+        "provider": (integer) <- CPF do provider<br>
+
 - Pesquisa
 
     localhost:8000/provider/**Provider**/**Occupation**

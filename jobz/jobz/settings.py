@@ -36,7 +36,6 @@ AUTH_USER_MODEL = "user.Person"
 # Application definition
 
 INSTALLED_APPS = [
-<<<<<<< HEAD
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,20 +49,6 @@ INSTALLED_APPS = [
     'search',
     'user',
     'provider_presentation',
-=======
-    "corsheaders",
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "rest_framework",
-    "service",
-    "search",
-    "user",
-    "provider_presentation"
->>>>>>> Corrigindo atributo foto
 ]
 
 MIDDLEWARE = [
