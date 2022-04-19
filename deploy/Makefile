@@ -1,6 +1,6 @@
 run:
-	docker push antonioaldisio/jobzfrontend
-	docker push antonioaldisio/jobzbackend
+	docker pull antonioaldisio/jobzfrontend
+	docker pull antonioaldisio/jobzbackend
 	docker-compose up -d
 
 stop:
