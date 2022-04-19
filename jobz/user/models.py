@@ -6,6 +6,11 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 from .utils import validate_cpf
 
+
+def nameFile(instance, filename):
+    return "/".join(["images", str(instance.name), filename])
+
+
 # Sobreescrever criação de user
 class PersonManager(BaseUserManager):
     def _create_user(
@@ -44,6 +49,7 @@ class PersonManager(BaseUserManager):
 
 # Create your models here.
 class Person(AbstractUser):
+
     name = models.CharField(
         validators=[
             RegexValidator(
@@ -85,6 +91,8 @@ class Person(AbstractUser):
         verbose_name="password",
         null=False,
     )
+
+    photo = models.ImageField(upload_to=nameFile, blank=True, null=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
