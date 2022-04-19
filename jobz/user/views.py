@@ -5,13 +5,15 @@ from rest_framework.response import Response
 from .serializers import UserSerializers, ProviderSerializers
 from .models import User, Provider
 
+
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('name')
+    queryset = User.objects.all().order_by("name")
     serializer_class = UserSerializers
     permission_classes = [permissions.AllowAny]
 
+
 class ProviderViewSet(viewsets.ModelViewSet):
-    queryset = Provider.objects.all().order_by('name')
+    queryset = Provider.objects.all().order_by("name")
     serializer_class = ProviderSerializers
     filterset_fields = ['name']
     permission_classes = [permissions.AllowAny]

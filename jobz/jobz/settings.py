@@ -36,19 +36,19 @@ AUTH_USER_MODEL = "user.Person"
 # Application definition
 
 INSTALLED_APPS = [
-    'corsheaders',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'schedule',
-    'service',
-    'search',
-    'user',
-    'provider_presentation',
+    "corsheaders",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "schedule",
+    "service",
+    "search",
+    "user",
+    "provider_presentation",
 ]
 
 MIDDLEWARE = [
@@ -164,8 +164,8 @@ SIMPLE_JWT = {
         "JWT",
         "Bearer",
     ),
-    "USER_ID_FIELD": "cpf",
-    "USER_ID_CLAIM": "user_cpf",
+    "USER_ID_FIELD": "email",
+    "USER_ID_CLAIM": "user_email",
     "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
     "TOKEN_TYPE_CLAIM": "token_type",
 }

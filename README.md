@@ -196,3 +196,20 @@ sudo fuser -k 5432/tcp
         "presentationPhoto": (image)<br>
         "description": (string)<br>
         "provider": (integer) <- CPF do provider<br>
+    
+- Perfil
+    localhost:8000/provider/**CPF**/
+
+    - **CPF** = CPF cadastrado do usuário.
+
+    - Atributos:
+        "cpf": (integer)<br>
+        "name": (string)<br>
+        "phone": (integer)<br>
+        "email": (string)<br>
+        "occupation": (int) <-- ID da occupation<br>
+        "password": (string)<br>
+        "photo": imagem ou null
+
+
+    **Todos os campos podem ser alterados pelo mesmo body que está no formulário de cadastro, também tem as mesmas restrições, inclusive a parte de inserir a senha, que pode ser a mesma ou uma nova senha(vamos mudar isso em breve).**
